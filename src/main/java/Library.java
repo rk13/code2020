@@ -1,25 +1,32 @@
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class Library {
-    public int signup;
-    public int booksperday;
-    public ArrayList<Integer> bookList;
+    public int signUp;
+    public int booksPerDay;
+    public Set<Book> bookList = new TreeSet<>(); //Desc
 
-    public int calculateScore(int deadLine, Map<Integer, Integer> bookScore, List<Integer> scannedBooks) {
-        int scanBeforDeadline = (deadLine-signup)*booksperday;
-        List<Integer> scorelist = bookList.stream()
-                .filter(i -> !scannedBooks.contains(i))
-                .map(i -> bookScore.get(i))
-                .collect(Collectors.toList());
+    public void addBook(Book book) {
+        bookList.add(book);
+    }
 
-        Collections.sort(scorelist);
+    public int calculateScore(int deadLine, Map<Integer, Book> bookStore) {
+        int scanBeforeDeadline = (deadLine - signUp) * booksPerDay;
+        List<Book> unscannedBooks = bookList.stream()
+                .filter(i -> !bookStore.get(i.index).isScanned).collect(Collectors.toList());
 
+        int score = 0;
+        for (int i = 0; i < scanBeforeDeadline; i++) {
+            score = score + unscannedBooks.get(i).score;
+        }
+        return score;
+    }
+
+    public List<Book> getBooks(int remainingDays, Map<Integer, Book> bookStore) {
+        return Collections.emptyList();
     }
 }
