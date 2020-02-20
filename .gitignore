@@ -1,0 +1,7 @@
+# Default ignored files
+/.idea/workspace.xml
+/.idea/azureSettings.xml
+/.idea/$PRODUCT_WORKSPACE_FILE$
+/.idea/gradle.xml
+/.idea/misc.xml
+/.idea/vcs.xml
