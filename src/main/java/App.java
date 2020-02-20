@@ -10,7 +10,7 @@ public class App {
     public static void main(String[] args) {
 
         try {
-            Scanner scanner = new Scanner(new File("b_read_on.txt"));
+            Scanner scanner = new Scanner(new File(args[0]));
 
             String[] firstLine = scanner.nextLine().split(" ");
 
@@ -43,16 +43,19 @@ public class App {
                 }
             }
 
-            // :)
-            System.out.print(1);
-            System.out.print(' ');
-            System.out.println(libraryBooksMap.get(0).size());
-            for(Integer i : libraryBooksMap.get(0).subList(0, 1000)) {
-                System.out.print(i);
-                System.out.print(' ');
+            int libs = libraryBooksMap.size() / 2;
+            int libsSize = B / libs;
+
+            System.out.println(libs);
+            for (int k = 0; k < libs; k++) {
+                int libSize = Math.min(libsSize, libraryBooksMap.get(k).size());
+                System.out.println(k + " " + libSize);
+                for (int j = 0; j < libSize; j++) {
+                    System.out.print(libraryBooksMap.get(k).get(j));
+                    System.out.print(' ');
+                }
+                System.out.println();
             }
-
-
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -5,6 +5,7 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class Library {
+
     public int signUp;
     public int booksPerDay;
     public Set<Book> bookList = new TreeSet<>(); //Desc
